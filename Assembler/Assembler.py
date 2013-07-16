@@ -3,11 +3,11 @@ from Tokeniser import *
 
 class Assembler:
 
-	def assemble( spec, definition, source, out ):
+	def assemble( spec, source, out ):
 		
-		t = Tokeniser( definition )
+		t = Tokeniser( source )
 		tree = Generator.generate( spec, t ) 
-		labels,program = t.tokenise( source ) 
+		labels,program = t.tokenise() 
 		
 		statements = []
 		for lineno,statement in program.items():

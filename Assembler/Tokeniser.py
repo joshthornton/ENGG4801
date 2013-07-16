@@ -6,39 +6,53 @@ import re
 
 class Tokeniser:
 	
-	def __init__( self, definitions ):
+	def __init__( self, source ):
 		self.definitions = {}
-		self.load_definitions( definitions )
+		self.lines = self.preprocess( source )
 	
-	def load_definitions( self, definitions ):
-		
-		# open file
-		f = open( definitions )
-
-		# extract each definition
-		for line in f:
-			parts = line.rstrip().split( "=" )
-			name = parts[0]
-			value = self.definitions.get( parts[1], parts[1] )
-			try:
-				self.definitions[name] = int( value, 0 )
-			except Exception as e:
-				print( "Could not parse '{0}' as integer".format( value ) )
-				exit()
-
-		# close file
-		f.close()		
-	
-	def tokenise( self, source  ):
+	def preprocess( self, source ):
 
 		# open file
-		f = open( source )
+		files = []
+		files.append( open( source ) )
+
+		# Output
+		lines = []
+
+		while len( files ) > 0:
+			while True:
+				line = files[-1].readline()
+				if line != "":
+					if line.startswith( "#" ):
+						matches = re.match( '(#include\s+"(.*)")|(#define\s+(\S+)\s+(\S+))', line ).groups()
+						if matches[ 1 ]:
+							files.append( open( matches[ 1 ] ) )
+							continue
+						elif matches[ 2 ]:
+							value = self.definitions.get( matches[ 4 ], matches[ 4 ] )
+							try:
+								self.definitions[ matches[ 3 ] ] = int( value, 0 )
+							except Exception as e:
+								print( "Could not parse '{0}' as integer".format( value ) )
+								exit()
+						else:
+							raise ValueError( "Unrecognised preprocessor directive: {0}".format( line ) )
+					else:
+						lines.append( line )
+				else:
+					f = files.pop()
+					f.close()
+					break
+
+		return lines
+
+	def tokenise( self ):
 
 		lines = {}
 		labels = {}
 
 		# go through each line
-		for lineno,line in enumerate( f ):
+		for lineno,line in enumerate( self.lines ):
 			
 			tokens = []
 			parts = re.findall( "(([a-zA-Z0-9]+)(:)$)|([a-zA-Z0-9]+:[a-zA-Z0-9]+)|([a-zA-Z0-9]+)|([\+=&~\-\^\.\|<>\[\]\(\)\*:]+)", line ) 
@@ -63,8 +77,6 @@ class Tokeniser:
 
 			if len( tokens ) > 0:
 				lines[lineno] = tokens
-
-		f.close()
 		
 		return labels,lines
 

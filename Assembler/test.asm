@@ -1,0 +1,10 @@
+main :
+ldi r16,240
+out DDRA,r16
+adiw r25:r24,1
+loop :
+sbis PINA,0
+rjmp loop
+ldi r16,PINA
+swap r16
+ldi PORTA,r16

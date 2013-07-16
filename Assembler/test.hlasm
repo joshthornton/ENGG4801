@@ -1,3 +1,5 @@
+#include "atmega64.def"
+
 main:
 	r16 = 0xF0
 	DDRA = r16
