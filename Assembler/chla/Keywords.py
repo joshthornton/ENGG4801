@@ -1,6 +1,7 @@
 import inspect
 
 class Keyword:
+	"""Abstract representation of a CHLA keyword."""
 	
 	def __init__( self, name ):
 		self._name = name
@@ -11,7 +12,7 @@ class Keyword:
 	def __repr__( self ):
 		return "Keyword: {0}".format( self._name )
 	
-	def __eq__( self, other ):
+	def match( self, other ):
 		if isinstance( other, Keyword ):
 			return self._name == other._name
 		return False
@@ -24,9 +25,11 @@ class Keyword:
 		
 	def asm( self ):
 		return self._name
+	
+	def chla( self ):
+		return self._name
 
 class Keywords:
-	R0R1		=	Keyword( "r1:r0" )
 	SREG		=	Keyword( "sreg" )
 	TRANSFER	=	Keyword( "t" )
 	SWAP		=	Keyword( "swap" )
@@ -41,9 +44,15 @@ class Keywords:
 	PMEM		=	Keyword( "pmem" )
 	CARRY		=	Keyword( "c" )
 	X			=	Keyword( "x" )
-	Y			=	Keyword( "y" )
-	Z			=	Keyword( "z" )
-	END			=	Keyword( "end" )
+	LEAF		=	Keyword( "leaf" )
+	SP			=	Keyword( "sp" )
+	HX			=	Keyword( "h:x" )
+	HA			=	Keyword( "h:a" )
+	XA			=	Keyword( "x:a" )
+	NOP			=	Keyword( "nop" )
+	A			=	Keyword( "a" )
+	H			=	Keyword( "h" )
+	INTERRUPT	=	Keyword( "i" )
 	
 	def __iter__(self):
 		return ( v for k, v in inspect.getmembers( self ) if not k.startswith( '__' ) )

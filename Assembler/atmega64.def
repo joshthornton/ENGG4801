@@ -1,8 +1,0 @@
-#define r0 0
-#define r1 1
-#define r16 16
-#define r24 24
-#define r25 25
-#define DDRA 0x3A
-#define PINA 0x39
-#define PORTA 0x1B

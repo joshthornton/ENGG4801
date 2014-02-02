@@ -1,0 +1,308 @@
+#include "test/hcs08.def"
+h:x = | 320 |
+sp = h:x - | 1 |
+sreg [ i ] = | 0 |
+a += | 25 | + c
+a += 16 + c
+a += 256 + c
+a += mem [ 256 + x ] + c
+a += mem [ 16 + x ] + c
+a += mem [ x ] + c
+a += mem [ 256 + sp ] + c
+a += mem [ 16 + sp ] + c
+a += | 2 |
+a += 16
+a += 256
+a += mem [ 256 + x ]
+a += mem [ 16 + x ]
+a += mem [ x ]
+a += mem [ 256 + sp ]
+a += mem [ 16 + sp ]
+sp += | -1 |
+h:x += | -1 |
+a &= | 255 |
+a &= 16
+a &= 16
+a &= 256
+a &= mem [ 256 + x ]
+a &= mem [ 16 + x ]
+a &= mem [ x ]
+a &= mem [ 256 + sp ]
+a &= mem [ 16 + sp ]
+mem [ 16 ] >> 1
+a >> | 1 |
+x >> | 1 |
+mem [ 16 + x ] >> | 1 |
+mem [ x ] >> | 1 |
+mem [ 16 + sp ] >> | 1 |
+l0:
+if | >= | goto l0
+mem [ 16 ] [ 1 ] = | 0 |
+l1:
+if | < | goto l1
+l2:
+if sreg [ Z ] == | 1 | goto l2
+l3:
+if >= goto l3
+l4:
+if > goto l4
+l5:
+if sreg [ h ] == | 0 | goto l5
+l6:
+if sreg [ h ] == | 1 | goto l6
+l7:
+if | > | goto l7
+l8:
+if | >= | goto l8
+l9:
+if IRQ == | 1 | goto l9
+l10:
+if IRQ == | 0 | goto l10
+a & | 255 |
+a & 16
+a & 256
+a & mem [ 256 + x ]
+a & mem [ 16 + x ]
+a & mem [ x ]
+a & mem [ 256 + sp ]
+a & mem [ 16 + sp ]
+l11:
+if <= goto l11
+l12:
+if | < | goto l12
+l13:
+if | <= | goto l13
+l14:
+if < goto l14
+l15:
+if sreg [ i ] == | 0 | goto l15
+l16:
+if sreg [ N ] == | 1 | goto l16
+l17:
+if sreg [ i ] == | 1 | goto l17
+l18:
+if sreg [ Z ] == | 0 | goto l18
+l19:
+if sreg [ N ] == | 0 | goto l19
+l20:
+goto l20
+l21:
+if 16 [ 1 ] == | 0 | goto l21
+l22:
+if 16 [ 1 ] == | 1 | goto l22
+16 [ 1 ] = | 1 |
+l23:
+l23 ( )
+l24:
+if a == 16 goto l24
+l25:
+if a == | 255 | goto l25
+l26:
+if x == | 255 | goto l26
+l27:
+if a == mem [ 16 + x ++ ] goto l27
+l28:
+if a == mem [ 0 + x ++ ] goto l28
+l29:
+if a == mem [ 16 + sp ] goto l29
+sreg [ c ] = | 0 |
+sreg [ i ] = | 0 |
+16 = | 0 |
+a = | 0 |
+x = | 0 |
+h = | 0 |
+mem [ 16 + x ] = | 0 |
+mem [ x ] = | 0 |
+mem [ PORTA + sp ] = | 0 |
+a - | 255 |
+a - 16
+a - 256
+a - mem [ 256 + x ]
+a - mem [ 16 + x ]
+a - mem [ x ]
+a - mem [ 256 + sp ]
+a - mem [ 16 + sp ]
+mem [ 16 ] ~= mem [ 16 ]
+a ~= a
+x ~= x
+mem [ 16 + x ] ~= mem [ 16 + x ]
+mem [ x ] ~= mem [ x ]
+mem [ 16 + sp ] ~= mem [ 16 + sp ]
+h:x - 256
+h:x - | 65354 |
+h:x - 16
+h:x - mem [ 16 + sp ]
+x - | 255 |
+x - 16
+x - 256
+x - mem [ 256 + x ]
+x - mem [ 16 + x ]
+x - mem [ x ]
+x - mem [ 256 + sp ]
+x - mem [ 16 + sp ]
+l30:
+if -- mem [ 16 ] != | 0 | goto l30
+l31:
+if -- a != | 0 | goto l31
+l32:
+if -- x != | 0 | goto l32
+l33:
+if -- mem [ 16 + x ] != | 0 | goto l33
+l34:
+l35:
+if -- mem [ x ] != | 0 | goto l34
+if -- mem [ 16 + sp ] != | 0 | goto l35
+16 -= | 1 |
+a -= | 1 |
+x -= | 1 |
+mem [ 16 + x ] -= | 1 |
+mem [ x ] -= | 1 |
+mem [ 16 + sp ] -= | 1 |
+a = mem [ h:a ] / mem [ x ]
+a ^= | 255 |
+a ^= 16
+a ^= 256
+a ^= mem [ 256 + x ]
+a ^= mem [ 16 + x ]
+a ^= mem [ x ]
+a ^= mem [ 256 + sp ]
+a ^= mem [ 16 + sp ]
+16 += | 1 |
+a += | 1 |
+x += | 1 |
+mem [ 16 + x ] += | 1 |
+mem [ x ] += | 1 |
+mem [ 16 + sp ] += | 1 |
+l36:
+l37:
+goto | l36 |
+goto | l37 + x |
+goto | x |
+l38:
+l39:
+l40:
+| l38 | ( )
+| l39 + x | ( )
+| l40 + x | ( )
+| x | ( )
+a = | 255 |
+a = 16
+a = 256
+a = mem [ 256 + x ]
+a = mem [ 16 + x ]
+a = mem [ x ]
+a = mem [ 256 + sp ]
+a = mem [ 16 + sp ]
+h:x = | 65535 |
+h:x = 16
+h:x = 256
+h:x = mem [ x ]
+h:x = mem [ 256 + x ]
+h:x = mem [ 16 + x ]
+h:x = mem [ 16 + sp ]
+x = | 255 |
+x = 16
+x = 256
+x = mem [ 256 + x ]
+x = mem [ 16 + x ]
+x = mem [ x ]
+x = mem [ 256 + sp ]
+x = mem [ 16 + sp ]
+mem [ 16 ] << | 1 |
+a << | 1 |
+x << | 1 |
+mem [ 16 + x ] << | 1 |
+mem [ x ] << | 1 |
+mem [ 16 + sp ] << | 1 |
+16 >>> | 1 |
+a >>> | 1 |
+x >>> | 1 |
+mem [ 16 + x ] >>> | 1 |
+mem [ x ] >>> | 1 |
+mem [ 16 + sp ] >>> | 1 |
+17 = 16
+mem [ X++ ] = mem [ 16 ]
+16 = | 255 |
+mem [ x ++ ] = mem [ 16 ]
+x:a = mem [ x ] * mem [ a ]
+mem [ 16 ] ~= mem [ 16 ] + | 1 |
+a ~= a + | 1 |
+x ~= x + | 1 |
+mem [ 16 + x ] ~= mem [ 16 + x ] + | 1 |
+mem [ x ] ~= mem [ x ] + | 1 |
+mem [ 16 + sp ] ~= mem [ 16 + sp ] + | 1 |
+nop
+swap ( a )
+a |= | 255 |
+a |= 255
+a |= 256
+a |= mem [ 256 + x ]
+a |= mem [ 16 + x ]
+a |= mem [ x ]
+a |= mem [ 256 + sp ]
+a |= mem [ 16 + sp ]
+push ( a )
+push ( h )
+push ( x )
+a = pop ( )
+h = pop ( )
+x = pop ( )
+mem [ 16 ] << | 1 | + c
+a << | 1 | + c
+x << | 1 | + c
+mem [ PORTA + x ] << | 1 | + c
+mem [ x ] << | 1 | + c
+mem [ 32 + sp ] << | 1 | + c
+70 [ 0 ] = | 1 |
+x >> | 1 | + c
+mem [ 16 + x ] >> | 1 | + c
+mem [ x ] >> | 1 | + c
+mem [ 16 + sp ] >> | 1 | + c
+reti
+ret
+a -= | 255 | - c
+a -= 16 - c
+a -= 256 - c
+a -= mem [ 256 + x ] - c
+a -= mem [ 16 + x ] - c
+a -= mem [ x ] - c
+a -= mem [ 256 + sp ] - c
+a -= mem [ 16 + sp ] - c
+sreg [ c ] = | 1 |
+sreg [ i ] = | 1 |
+16 = a
+256 = a
+mem [ 16 + x ] = a
+mem [ x ] = a
+mem [ 256 + sp ] = a
+mem [ 16 + sp ] = a
+mem [ 255 ] = h:x
+mem [ 256 ] = h:x
+mem [ 16 + sp ] = h:x
+16 = x
+256 = x
+mem [ 256 + x ] = x
+mem [ 16 + x ] = x
+mem [ x ] = x
+mem [ 256 + sp ] = x
+mem [ 16 + sp ] = x
+a -= | 255 |
+a -= 16
+a -= 256
+a -= mem [ 16 + x ]
+a -= mem [ x ]
+a -= mem [ 256 + sp ]
+a -= mem [ 16 + sp ]
+sreg = a
+x = a
+a = sreg
+16 <= | 0 |
+a <= | 0 |
+x <= | 0 |
+mem [ 16 + x ] <= | 0 |
+mem [ x ] <= | 0 |
+mem [ 16 + sp ] <= | 0 |
+h:x = sp + | 1 |
+a = x
+sp = h:x - | 1 |
+a -= mem [ 0 + x ]

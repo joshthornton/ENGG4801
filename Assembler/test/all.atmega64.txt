@@ -1,0 +1,148 @@
+NOP
+ADC r16 , r17
+ADD r16 , r17
+ADIW r25:r24 , 1
+AND r16 , r17
+ANDI r16 , 0xF0
+COM r16
+CP r16 , r17
+CPC r16 , r17
+CPI r16 , 0xF0
+DEC r16
+EOR r16 , r17
+FMUL r16 , r17
+FMULS r16 , r17
+FMULSU r16 , r17
+INC r16
+LSL r16
+LSR r16
+MUL r16 , r17
+MULS r16 , r17
+MULSU r16 , r17
+NEG r16
+OR r16 , r17
+ORI r16 , 0xF0
+SBC r16 , r17
+SBCI r16 , 0xF0
+SBIW r25:r24, 1
+SUB r16 , r17
+SUBI r16 , 0xF0
+ASR r16
+BCLR 1
+BLD r16 , 1
+BSET 1
+BST r17 , 1
+CBI PORTA , 1
+ROL r16
+ROR r16
+SBI PORTA, 1
+SWAP r16
+
+lbreq:
+BREQ lbreq
+
+lbrge:
+BRGE lbrge
+
+lbrlt:
+BRLT lbrlt
+
+lbrlo:
+BRLO lbrlo
+
+lbrne:
+BRNE lbrne
+
+lbrmi:
+BRMI lbrmi
+
+lbrpl:
+BRPL lbrpl
+
+lbrsh:
+BRSH lbrsh
+
+lbrbc:
+BRBC 1 , lbrbc
+
+lbrbs:
+BRBS 1 , lbrbs
+
+
+CALL subr
+RCALL subr
+
+subr:
+	RET
+
+ldi r31, HIGH(subr)
+ldi r30, LOW(subr)
+ICALL
+
+ldi r31, HIGH(lijmp)
+ldi r30, LOW(lijmp)
+IJMP
+lijmp:
+
+CPSE r16 , r17
+
+ljmp:
+JMP ljmp
+
+lrjmp:
+RJMP lrjmp
+
+
+SBIC PINA , 1
+SBIS PINA , 1
+SBRC r16 , 1
+SBRS r16 , 1
+
+IN r16 , PINA
+MOV r16 , r17
+MOVW r25:r24 , r31:r30
+OUT DDRA , r17
+
+POP r16
+PUSH r17
+
+SLEEP
+WDR
+
+ld r16 , X	
+ld r16 , X+	
+ld r16, -X	
+ld r16 , Y	
+ld r16, Y+	
+ld r16, -Y	
+ldd r16, Y + 1
+ld r16, Z
+ld r16, Z+	
+ld r16 , -Z
+ldd r16 , Z + 1
+ldi r16 , 0xFF
+lds r16, 24
+lds r16, 65534
+lpm	
+lpm r16, Z	
+lpm r16,Z+
+
+	
+spm	
+st X, r16
+st X+, r16
+st -X, r16	
+
+st Y, r16
+st Y+, r16
+st -Y, r16
+std Y + 63, r16
+
+st Z, r16
+st Z+, r16
+st -Z, r16
+std Z + 63, r16
+
+sts 127 , r16
+sts 65534 , r16
+

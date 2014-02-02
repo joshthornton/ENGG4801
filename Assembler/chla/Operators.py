@@ -1,6 +1,7 @@
 import inspect
 
 class Operator:
+	"""Abstract representation of CHLA operator."""
 
 	def __init__( self, name ):
 		self._name = name
@@ -11,7 +12,7 @@ class Operator:
 	def __repr__( self ):
 		return "Operator: {0}".format( self._name )
 	
-	def __eq__( self, other ):
+	def match( self, other ):
 		if isinstance( other, Operator ):
 			return self._name == other._name
 		return False
@@ -25,11 +26,15 @@ class Operator:
 	def asm( self ):
 		return self._name
 
+	def chla( self ):
+		return self._name
+
 class Operators:
 	PLUS_EQ			=	Operator( "+=" )
 	PLUS_PLUS		=	Operator( "++" )
 	PLUS			=	Operator( "+" )
-	AND             =	Operator( "&=" )
+	AND_EQ          =	Operator( "&=" )
+	NOT_EQ          =	Operator( "!=" )
 	NOT             =	Operator( "~=" )
 	EQ_EQ			=	Operator( "==" )
 	SUB_EQ			=	Operator( "-=" )
@@ -50,6 +55,13 @@ class Operators:
 	CLOSE_BRACKET   =	Operator( ")" )
 	PAIR			=	Operator( ":" )
 	COMMA			= 	Operator( "," )
+	HASH			= 	Operator( "#" )
+	GEQ				= 	Operator( ">=" )
+	LEQ				=	Operator( "<=" )
+	LT				=	Operator( "<" )
+	GT				=	Operator( ">" )
+	AND				=	Operator( "&" )
+	DIV				=	Operator( "/" )
 
 	def __iter__(self):
 		return ( v for k, v in inspect.getmembers( self ) if not k.startswith( '__' ) )

@@ -1,0 +1,129 @@
+#define GREEN_BIT 0
+#define YELLOW_BIT 1
+#define RED_BIT 2
+#define GREEN_STATE (1<<GREEN_BIT)
+#define YELLOW_STATE (1<<YELLOW_BIT)
+#define RED_STATE (1<<RED_BIT)
+
+#define INTERRUPT_LOW (int(20000/8)&0x00FF)
+#define INTERRUPT_HIGH ((int(20000/8)&0xFF00)>>8)
+
+#ifdef AVR
+
+#include "test/atmega64.def"
+#define STATE r16
+#define COUNTER r17
+#define TEMP r18
+
+#else
+
+#include "test/hcs08.def"
+#define STATE 16
+#define COUNTER A
+#define TEMP X
+
+#endif
+
+#define OUTPUT PORTA
+
+setup:
+
+TEMP = |0x07|
+DDRA = TEMP
+
+#ifdef AVR
+
+TEMP = |0x00|
+TCCR1A = TEMP
+TEMP = |0x0A|
+TCCR1B = TEMP
+TEMP = |INTERRUPT_HIGH|
+OCR1AH = TEMP
+TEMP = |INTERRUPT_LOW|
+OCR1AL = TEMP
+TEMP = |0x10|
+TIMSK = TEMP
+
+TEMP = |3|
+MEM[ EICRA ] = TEMP
+TEMP = |1|
+EIMSK = TEMP
+
+
+SREG [ I ] = | 1 |
+
+#else
+
+TEMP = |0x17|
+SRTISC = TEMP
+TEMP = |0x12|
+IRQSC = TEMP
+
+#endif
+
+COUNTER = |0|
+STATE = |GREEN_STATE|
+
+busy:
+	goto busy
+
+button:
+	if STATE[GREEN_BIT] == |1| skip
+	goto exit
+	COUNTER <= |0|
+	if != goto exit
+	STATE = |YELLOW_STATE|
+	COUNTER = |3|
+	
+#ifndef AVR
+	IRQSC[2] = |1|	
+#endif
+
+	goto exit
+
+
+timer:
+	if STATE[GREEN_BIT] == |0| skip
+	goto green
+	if STATE[YELLOW_BIT] == |0| skip
+	goto yellow
+	if STATE[RED_BIT] == |0| skip
+	goto red
+
+yellow:
+	OUTPUT = STATE
+	COUNTER <= |0|
+	if == goto yellowNext
+	
+	yellowDec:
+		COUNTER -= |1|
+		goto exit
+
+	yellowNext:
+		STATE = |RED_STATE|
+		COUNTER = |10|
+		goto exit
+
+red:
+	OUTPUT = STATE
+	COUNTER <= |0|
+	if == goto redNext
+	
+	redDec:
+		COUNTER -= |1|
+		goto exit
+
+	redNext:
+		STATE = |GREEN_STATE|
+		COUNTER = |10|
+		goto exit
+
+green:
+	OUTPUT = STATE
+	COUNTER <= |0|
+	if == goto exit
+	COUNTER -= |1|
+	goto exit
+
+exit:
+	reti

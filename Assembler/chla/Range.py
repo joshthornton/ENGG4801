@@ -1,6 +1,8 @@
-from Value import *
+from chla.Value import *
+from chla.Label import *
 
 class Range:
+	"""Class to represent and check legal operand ranges."""
 	def __init__( self, low, high ):
 		self._low = low
 		self._high = high
@@ -20,11 +22,18 @@ class Range:
 		return hash( self.__key() )
 	
 	def check( self, v ):
-		if isinstance( v, Value ):
+		if isinstance( v, ( Value, Label ) ):
 			return v._value >= self._low and v._value <= self._high
 		return False
+	
+	def low( self ):
+		return self._low
+	
+	def high( self ):
+		return self._high
 
 class PairRange:
+	"""Class to represent and check legal operand ranges."""
 	def __init__( self, first, second ):
 		self._first = Range( first[0], first[1] )
 		self._second = Range( second[0], second[1] )
@@ -45,7 +54,13 @@ class PairRange:
 	
 	def check( self, v ):
 		if isinstance( v, Pair ):
-			if v._first._value != v._second._value + 1:
+			if v._firstValue._value != v._secondValue._value + 1:
 				return False
-			return self._first.check( v._first ) and self._second.check( v._second )
+			return self._first.check( v._firstValue ) and self._second.check( v._secondValue )
 		return False
+	
+	def first( self ):
+		return self._first
+	
+	def second( self ):
+		return self._second

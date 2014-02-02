@@ -1,0 +1,7 @@
+#define HCS 1
+
+#define SRTISC 0x1808
+#define IRQSC 0x0014
+
+#define DDRA 0x000A
+#define PORTA 0x0008

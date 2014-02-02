@@ -1,0 +1,351 @@
+ADC #25
+ADC 16
+ADC 256
+ADC 256 , X
+ADC 16 , X
+ADC , X
+ADC 256 , SP
+ADC 16 , SP
+ADD #2
+ADD 16
+ADD 256
+ADD 256 , X
+ADD 16 , X
+ADD , X
+ADD 256 , SP
+ADD 16 , SP
+AIS #127
+AIX #127
+AND #255
+AND 16
+AND 16
+AND 256
+AND 256 , X
+AND 16 , X
+AND , X
+AND 256 , SP
+AND 16 , SP
+ASR 16
+ASRA
+ASRX
+ASR 16 , X
+ASR , X
+ASR 16 , SP
+
+lbcc:
+BCC lbcc
+
+lbclr:
+BCLR 1 , 16
+
+lbcs:
+BCS lbcs
+
+lbeq:
+BEQ lbeq
+
+lbge:
+BGE lbge
+
+lbgt:
+BGT lbgt
+
+lbhcc:
+BHCC lbhcc
+
+lbhcs:
+BHCS lbhcs
+
+lbhi:
+BHI lbhi
+
+lbhs:
+BHS lbhs
+
+lbih:
+BIH lbih
+
+lbil:
+BIL lbil
+
+
+BIT #255
+BIT 16
+BIT 256
+BIT 256 , X
+BIT 16 , X
+
+BIT , X
+BIT 256 , SP
+BIT 16 , SP
+
+lble:
+BLE lble
+
+lblo:
+BLO lblo
+
+lbls:
+BLS lbls
+
+lblt:
+BLT lblt
+
+lbmc:
+BMC lbmc
+
+lbmi:
+BMI lbmi
+
+lbms:
+BMS lbms
+
+lbne:
+BNE lbne
+
+lbpl:
+BPL lbpl
+
+lbra:
+BRA lbra
+
+lbrclr:
+BRCLR 1 , 16 , lbrclr
+
+lbrset:
+BRSET 1 , 16 , lbrset
+
+
+BSET 1 , 16
+
+lbsr:
+BSR lbsr
+
+lcbeq:
+CBEQ 16 , lcbeq
+
+lcbeqa:
+CBEQA #255 , lcbeqa
+
+lcbeqx:
+CBEQX #255 , lcbeqx
+
+lcbeq1:
+CBEQ 16 , X + , lcbeq1
+
+lcbeq2:
+CBEQ , X + , lcbeq2
+
+lcbeq3:
+CBEQ 16 , SP , lcbeq3
+
+
+CLC
+CLI
+CLR 16
+CLRA
+CLRX
+CLRH
+CLR 16 , X
+CLR , X
+CLR 16 , SP
+CMP #255
+CMP 16
+CMP 256
+CMP 256, X
+CMP 16 , X
+CMP , X
+CMP 256, SP
+CMP 16 , SP
+COM 16
+COMA
+COMX
+COM 16 , X
+COM , X
+COM 16 , SP
+CPHX 256
+CPHX #65354
+CPHX 16
+CPHX 16 , SP
+CPX #255
+CPX 16
+CPX 256
+CPX 256 , X
+CPX 16 , X
+CPX , X
+CPX 256 , SP
+CPX 16 , SP
+
+ldbnz:
+DBNZ 16 , ldbnz
+
+ldbnza:
+DBNZA ldbnza
+
+ldbnzx:
+DBNZX ldbnzx
+
+ldbnz2:
+DBNZ 16 , X , ldbnz2
+
+ldbnx:
+DBNZ ,X,ldbnx
+
+ldbnz3:
+DBNZ 16,SP,ldbnz3
+
+DEC 16
+DECA
+DECX
+DEC 16 , X
+DEC , X
+DEC 16 , SP
+DIV
+EOR #255
+EOR 16
+EOR 256
+EOR 256, X
+EOR 16 , X
+EOR , X
+EOR 256, SP
+EOR 16, SP
+INC 16
+INCA
+INCX
+INC 16 , X
+INC , X
+INC 16 , SP
+
+ljmp:
+JMP ljmp
+JMP ljmp, X
+JMP , X
+
+ljsr:
+JSR ljsr
+JSR ljsr, X
+JSR ljsr, X
+JSR X
+
+
+LDA #255
+LDA 16
+LDA 256
+LDA 256, X
+LDA 16 , X
+LDA , X
+LDA 256, SP
+LDA 16 , SP
+LDHX #65535
+LDHX 16
+LDHX 256
+LDHX , X
+LDHX 256, X
+LDHX 16 , X
+LDHX 16 , SP
+LDX #255
+LDX 16
+LDX 256
+LDX 256, X
+LDX 16 , X
+LDX , X
+LDX 256, SP
+LDX 16 , SP
+LSL 16
+LSLA
+LSLX
+LSL 16 , X
+LSL , X
+LSL 16 , SP
+LSR 16
+LSRA
+LSRX
+LSR 16 , X
+LSR , X
+LSR 16 , SP
+MOV 16 , 17
+MOV 16 , X +
+MOV #255, 16
+MOV , X + , 16
+MUL
+NEG 16
+NEGA
+NEGX
+NEG 16 , X
+NEG , X
+NEG 16 , SP
+NOP
+NSA
+ORA #255
+ORA 255
+ORA 256
+ORA 256, X
+ORA 16 , X
+ORA , X
+ORA 256, SP
+ORA 16 , SP
+PSHA
+PSHH
+PSHX
+PULA
+PULH
+PULX
+ROL 16
+ROLA
+ROLX
+ROL 16 , X
+ROL , X
+ROL 16 , SP
+ROR 16
+RORA
+RORX
+ROR 16 , X
+ROR , X
+ROR 16 , SP
+RTI
+RTS
+SBC #255
+SBC 16
+SBC 256
+SBC 256, X
+SBC 16 , X
+SBC , X
+SBC 256, SP
+SBC 16 , SP
+SEC
+SEI
+STA 16
+STA 256
+STA 16 , X
+STA , X
+STA 256, SP
+STA 16 , SP
+STHX 255
+STHX 256
+STHX 16 , SP
+STX 16
+STX 256
+STX 256, X
+STX 16 , X
+STX , X
+STX 256, SP
+STX 16 , SP
+SUB #255
+SUB 16
+SUB 256
+SUB 16 , X
+SUB , X
+SUB 256, SP
+SUB 16 , SP
+TAP
+TAX
+TPA
+TST 16
+TSTA
+TSTX
+TST 16 , X
+TST , X
+TST 16 , SP
+TSX
+TXA
+TXS

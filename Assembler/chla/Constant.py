@@ -1,17 +1,17 @@
-class Label:
-	
+class Constant:
+	"""Abstract Representation of assembly character constant"""
 	def __init__( self, name ):
 		self._name = name
-	
+
 	def __str__( self ):
 		return self._name
 
 	def __repr__( self ):
-		return "Label: {0}".format( self._name )
+		return "Constant: {0}".format( self._name )
 	
 	def __eq__( self, other ):
-		if isinstance( other, Label ):
-			return self._name == other._name 
+		if isinstance( other, Constant ):
+			return self._name == other._name
 		return False
 	
 	def __key( self ):
@@ -19,6 +19,9 @@ class Label:
 	
 	def __hash__( self ):
 		return hash( self.__key() )
-	
+
 	def asm( self ):
+		return self._name
+
+	def chla( self ):
 		return self._name
